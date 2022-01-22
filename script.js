@@ -77,4 +77,18 @@ function game() {
         console.log("Something went very wrong.")
     }
 }
-game();
+
+const h1 = document.querySelector('.header');
+const launchButton = document.querySelector('.launch');
+const gameContainer = document.querySelector('.game-container');
+
+window.onload = () => gameContainer.classList.add('transition');
+
+function launch () {
+    gameContainer.classList.toggle('hidden');
+    launchButton.remove();
+}
+
+launch();
+
+launchButton.addEventListener ("click", launch, { once: true });
