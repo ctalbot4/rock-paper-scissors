@@ -89,8 +89,6 @@ function launch () {
     launchButton.remove();
 }
 
-launch();
-
 launchButton.addEventListener("click", launch, { once: true });
 
 const buttons = document.querySelectorAll('.game-buttons button');
@@ -101,9 +99,11 @@ function handleButtonClick (e) {
     let playerSelection;
     id === "rock-button" ? playerSelection = "rock": id === "paper-button" ? playerSelection = "paper" : 
             id === "scissors-button" ? playerSelection = "scissors" : playerSelection = null; 
-            //probably not proper conventions
+            // probably not proper conventions
     computerSelection = computerPlay();
     console.log(interpretSelections(playerSelection, computerSelection));
 }
 
 buttons.forEach(button => button.addEventListener('click', handleButtonClick));
+
+launch(); // temporary so launch button doesn't have to be clicked after every reload
