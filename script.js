@@ -64,7 +64,7 @@ launchButton.addEventListener("click", launch, { once: true });
 
 const buttons = document.querySelectorAll('.game-buttons button');
 
-let gameHasStarted = false;
+let gameStarted = false;
 const output = document.querySelector('.output');
 const buttonContainer = document.querySelector('.game-buttons');
 const playerContainer = document.querySelector('.player-choice');
@@ -72,9 +72,19 @@ const computerContainer = document.querySelector('.computer-choice');
 const outputContainer = document.querySelector('.output');
 const outputTextContainer = document.querySelector('.output-text');
 
+let roundCount = 0;
+let wins = 0;
+let losses = 0;
+
+function gameOver() {
+    buttonContainer.style.display = "none";
+    if (wins > losses) {
+    }
+}
+
 function handleButtonClick (e) {
-    if (!gameHasStarted) {
-        gameHasStarted = true;
+    if (!gameStarted) {
+        gameStarted = true;
         output.classList.toggle('soft-hidden');
         playerContainer.firstElementChild.textContent = "Your choice:";
         computerContainer.firstElementChild.textContent = "Computer's choice:";
@@ -87,7 +97,19 @@ function handleButtonClick (e) {
             // probably not proper conventions
     computerSelection = computerPlay();
     showEmojiChoices(playerSelection, computerSelection);
-    outputTextContainer.textContent = interpretSelections(playerSelection, computerSelection);
+    let roundOutcome = interpretSelections(playerSelection, computerSelection);
+    outputTextContainer.textContent = roundOutcome;
+    roundCount++;
+    if (roundOutcome.includes("win")) {
+        wins += 1;
+    }
+    else {
+        losses += 1;
+    }
+
+    if (roundCount === 5) {
+        gameOver();
+    }
 }
 
 function showEmojiChoices (playerSelection, computerSelection) {
