@@ -11,7 +11,6 @@ function computerPlay() {
     }
 }
 function interpretSelections(playerSelection, computerSelection) {
-    playerSelection = playerSelection.toLowerCase().trim();
     if (playerSelection === "rock") {
         if (computerSelection === "scissors") {
             return "You win! Rock beats scissors.";
@@ -49,34 +48,6 @@ function interpretSelections(playerSelection, computerSelection) {
         return "Invalid input.";
     }
 }
-function game() {
-    let wins = 0;
-    let losses = 0;
-    for (let i = 0; i < 5; i++) {
-        let playerSelection = prompt("Rock, paper, or scissors?");
-        computerSelection = computerPlay();
-        let roundOutcome = interpretSelections(playerSelection,computerSelection);
-        console.log(roundOutcome);
-        if (roundOutcome.includes("win")) {
-            wins += 1;
-        }
-        else {
-            losses += 1;
-        }
-    }
-    if (wins > losses) {
-        console.log("You beat the computer!");
-    }
-    else if (losses > wins) {
-        console.log("You lost to the computer.");
-    }
-    else if (wins === losses) {
-        console.log("You tied with the computer.");
-    }
-    else {
-        console.log("Something went very wrong.")
-    }
-}
 
 const h1 = document.querySelector('.header');
 const launchButton = document.querySelector('.launch');
@@ -92,16 +63,54 @@ function launch () {
 launchButton.addEventListener("click", launch, { once: true });
 
 const buttons = document.querySelectorAll('.game-buttons button');
-console.log(buttons);
+
+let gameHasStarted = false;
+const output = document.querySelector('.output');
+const buttonContainer = document.querySelector('.game-buttons');
+const playerContainer = document.querySelector('.player-choice');
+const computerContainer = document.querySelector('.computer-choice');
+const outputContainer = document.querySelector('.output');
+const outputTextContainer = document.querySelector('.output-text');
 
 function handleButtonClick (e) {
+    if (!gameHasStarted) {
+        gameHasStarted = true;
+        output.classList.toggle('soft-hidden');
+        playerContainer.firstElementChild.textContent = "Your choice:";
+        computerContainer.firstElementChild.textContent = "Computer's choice:";
+    }
+
     id = this.id;
     let playerSelection;
     id === "rock-button" ? playerSelection = "rock": id === "paper-button" ? playerSelection = "paper" : 
             id === "scissors-button" ? playerSelection = "scissors" : playerSelection = null; 
             // probably not proper conventions
     computerSelection = computerPlay();
-    console.log(interpretSelections(playerSelection, computerSelection));
+    showEmojiChoices(playerSelection, computerSelection);
+    outputTextContainer.textContent = interpretSelections(playerSelection, computerSelection);
+}
+
+function showEmojiChoices (playerSelection, computerSelection) {
+    let i = 0;
+    console.log(outputContainer.childNodes);
+    outputContainer.childNodes.forEach(node => {
+        if (node.nodeType !== 1 || i > 3) {
+            i++;
+            return;
+        }
+        console.log(i);
+        switch (i++ === 1 ? playerSelection : computerSelection) {
+            case 'rock':
+                node.lastElementChild.textContent = "✊"
+                break;
+            case 'paper':
+                node.lastElementChild.textContent = "✋"
+                break;
+            case 'scissors':
+                node.lastElementChild.textContent = "✌️";
+                break;
+        }
+    })
 }
 
 buttons.forEach(button => button.addEventListener('click', handleButtonClick));

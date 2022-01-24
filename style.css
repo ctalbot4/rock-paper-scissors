@@ -8,8 +8,12 @@ body {
 }
 
 .hidden {
-    visibility: hidden;
+    display: none;
     opacity: 0;
+}
+
+.soft-hidden {
+    visibility: none;
 }
 
 .transition {
@@ -23,4 +27,16 @@ body {
 
 .game-buttons {
     display: flex;
+}
+
+.output {
+    display: flex;
+    gap: 20px;
+}
+
+
+
+.player-choice, .computer-choice {
+    display: flex;
+    flex-flow: column;
 }
