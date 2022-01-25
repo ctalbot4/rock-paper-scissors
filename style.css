@@ -3,17 +3,25 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color:rgb(187, 230, 255);
+    background-color:rgb(174, 225, 255);
     display: flex;
     flex-flow: column;
     align-items: center;
     height: 100vh;
+    margin: 0;
 }
 
 .header {
     text-align: center;
-    margin-bottom: 65px;
     font-size: 45px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.89);
+}
+
+.header-container {
+    background-color:rgb(29, 100, 141);
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 .hidden {
@@ -33,19 +41,21 @@ body {
     display: flex;
     flex-flow: column;
     align-items: center;
-    margin-top: 30px;
+    margin-top: 20px;
+    width: 40%;
 }
 
 .output {
     display: flex;
-    gap: 50px;
-    justify-content: center;
+    justify-content: space-between;
     margin-bottom: 65px;
+    width: 100%;
 }
 
 .output-text {
     margin-bottom: 30px;
     font-size: 22px;
+    font-weight: 400;
 }
 
 .player-choice, .computer-choice {
@@ -53,15 +63,17 @@ body {
     flex-flow: column;
     flex: 1;
     text-align: center;
+    align-items: center;
+    max-width: 200px;
 }
 
 .choice-emoji {
     font-size: 80px;
+    color: rgb(99, 99, 99);
 }
 
 .choice-text {
     font-size: 25px;
-    width: 200px;
 }
 
 .output div {

@@ -64,7 +64,6 @@ launchButton.addEventListener("click", launch, { once: true });
 
 const buttons = document.querySelectorAll('.game-buttons button');
 
-let gameStarted = false;
 const output = document.querySelector('.output');
 const buttonContainer = document.querySelector('.game-buttons');
 const playerContainer = document.querySelector('.player-choice');
@@ -83,11 +82,6 @@ function gameOver() {
 }
 
 function handleButtonClick (e) {
-    if (!gameStarted) {
-        gameStarted = true;
-        output.classList.toggle('soft-hidden');
-    }
-
     id = this.id;
     let playerSelection;
     id === "rock-button" ? playerSelection = "rock": id === "paper-button" ? playerSelection = "paper" : 
