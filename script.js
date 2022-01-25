@@ -86,8 +86,6 @@ function handleButtonClick (e) {
     if (!gameStarted) {
         gameStarted = true;
         output.classList.toggle('soft-hidden');
-        playerContainer.firstElementChild.textContent = "Your choice:";
-        computerContainer.firstElementChild.textContent = "Computer's choice:";
     }
 
     id = this.id;
@@ -103,33 +101,33 @@ function handleButtonClick (e) {
     if (roundOutcome.includes("win")) {
         wins += 1;
     }
-    else {
+    else if (roundOutcome.includes('lose')) {
         losses += 1;
     }
 
-    if (roundCount === 5) {
+    if (wins === 5 || losses == 5) {
         gameOver();
     }
+    console.log(wins);
+    console.log(losses);
 }
 
 function showEmojiChoices (playerSelection, computerSelection) {
     let i = 0;
-    console.log(outputContainer.childNodes);
     outputContainer.childNodes.forEach(node => {
         if (node.nodeType !== 1 || i > 3) {
             i++;
             return;
         }
-        console.log(i);
         switch (i++ === 1 ? playerSelection : computerSelection) {
             case 'rock':
-                node.lastElementChild.textContent = "✊"
+                node.firstElementChild.textContent = "✊"
                 break;
             case 'paper':
-                node.lastElementChild.textContent = "✋"
+                node.firstElementChild.textContent = "✋"
                 break;
             case 'scissors':
-                node.lastElementChild.textContent = "✌️";
+                node.firstElementChild.textContent = "✌️";
                 break;
         }
     })

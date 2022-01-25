@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,100;1,300&display=swap');
 
+
 body {
-    font-family: Roboto, sans-serif;
+    font-family: 'Roboto', sans-serif;
+    background-color:rgb(187, 230, 255);
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -9,7 +11,9 @@ body {
 }
 
 .header {
-    margin-bottom: 0;
+    text-align: center;
+    margin-bottom: 65px;
+    font-size: 45px;
 }
 
 .hidden {
@@ -28,21 +32,68 @@ body {
 .game-container {
     display: flex;
     flex-flow: column;
-    gap: 15px;
     align-items: center;
-    margin-top: 100px;
-}
-
-.game-buttons {
-    display: flex;
+    margin-top: 30px;
 }
 
 .output {
     display: flex;
-    gap: 20px;
+    gap: 50px;
+    justify-content: center;
+    margin-bottom: 65px;
+}
+
+.output-text {
+    margin-bottom: 30px;
+    font-size: 22px;
 }
 
 .player-choice, .computer-choice {
     display: flex;
     flex-flow: column;
+    flex: 1;
+    text-align: center;
+}
+
+.choice-emoji {
+    font-size: 80px;
+}
+
+.choice-text {
+    font-size: 25px;
+    width: 200px;
+}
+
+.output div {
+    gap: 10px;
+}
+
+.button-desc {
+    font-size: 25px;
+}
+
+.game-buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 30px;
+    gap: 20px;
+}
+
+.game-buttons button {
+    background-color: rgb(226, 245, 255);
+    border-style: none;
+    border-radius: 8px;
+    width: 150px;
+    height: 125px;
+}
+
+.game-buttons button:hover {
+    background-color: rgb(210, 228, 238);
+    cursor: pointer;
+}
+
+.game-buttons button div {
+    text-align: center;
+    font-size: 80px;
 }
