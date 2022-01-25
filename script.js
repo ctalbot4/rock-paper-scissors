@@ -53,10 +53,13 @@ const h1 = document.querySelector('.header');
 const launchButton = document.querySelector('.launch');
 const gameContainer = document.querySelector('.game-container');
 
-window.onload = () => gameContainer.classList.add('transition');
+// window.onload = () => gameContainer.classList.add('transition');
 
 function launch () {
+    gameContainer.classList.toggle('soft-hidden');
     gameContainer.classList.toggle('hidden');
+    gameContainer.classList.add('transition');
+    setTimeout (() => gameContainer.classList.toggle('soft-hidden'), 1) // required for transition to occur; not sure why
     launchButton.remove();
 }
 

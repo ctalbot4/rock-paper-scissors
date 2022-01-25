@@ -25,21 +25,34 @@ body {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
     opacity: 0;
 }
 
 .soft-hidden {
     visibility: hidden;
+    opacity: 0;
 }
 
 .launch {
     background-color: rgb(226, 245, 255);
-    border: none;
-    width: 130px;
-    height: 80px;
+    border-width: 0.5px;
+    border-radius: 5px;
     font-weight: bold;
     font-size: 20px;
+    margin-top: 10%;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    width: 180px;
+    height: 80px;
+    flex-shrink: 0;
+    font-size: 25px;
+}
+
+.launch:hover {
+    background-color: rgb(210, 228, 238);
+    cursor: pointer;
 }
 
 .transition {
@@ -52,6 +65,7 @@ body {
     align-items: center;
     margin-top: 20px;
     width: 40%;
+    flex-shrink: 1;
 }
 
 .output {
@@ -91,6 +105,7 @@ body {
 
 .button-desc {
     font-size: 25px;
+    text-align: center;
 }
 
 .game-buttons {
