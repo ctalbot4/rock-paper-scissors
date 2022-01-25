@@ -75,10 +75,17 @@ let roundCount = 0;
 let wins = 0;
 let losses = 0;
 
+const playerScore = document.querySelector('.player-choice .choice-text .score');
+const computerScore = document.querySelector('.computer-choice .choice-text .score');
+const buttonDesc = document.querySelector(".button-desc");
+
 function gameOver() {
     buttonContainer.style.display = "none";
-    if (wins > losses) {
-    }
+    if (wins > losses) buttonDesc.textContent = "You win! You beat the computer!";
+    else if (losses > wins) buttonDesc.textContent = "You lost! The computer beat you."
+    else buttonDesc.textContent = "Something very wrong happened.";
+    buttonDesc.style.fontWeight = 'bold';
+    buttonDesc.style.fontSize = '31px';
 }
 
 function handleButtonClick (e) {
@@ -99,11 +106,12 @@ function handleButtonClick (e) {
         losses += 1;
     }
 
+    playerScore.textContent = wins;
+    computerScore.textContent = losses;
+
     if (wins === 5 || losses == 5) {
         gameOver();
     }
-    console.log(wins);
-    console.log(losses);
 }
 
 function showEmojiChoices (playerSelection, computerSelection) {
@@ -129,4 +137,4 @@ function showEmojiChoices (playerSelection, computerSelection) {
 
 buttons.forEach(button => button.addEventListener('click', handleButtonClick));
 
-launch(); // temporary so launch button doesn't have to be clicked after every reload
+// launch(); // temporary so launch button doesn't have to be clicked after every reload

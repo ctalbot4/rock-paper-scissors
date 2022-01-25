@@ -30,7 +30,16 @@ body {
 }
 
 .soft-hidden {
-    visibility: none;
+    visibility: hidden;
+}
+
+.launch {
+    background-color: rgb(226, 245, 255);
+    border: none;
+    width: 130px;
+    height: 80px;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .transition {
@@ -68,12 +77,12 @@ body {
 }
 
 .choice-emoji {
-    font-size: 80px;
+    font-size: 100px;
     color: rgb(99, 99, 99);
 }
 
 .choice-text {
-    font-size: 25px;
+    font-size: 35px;
 }
 
 .output div {
