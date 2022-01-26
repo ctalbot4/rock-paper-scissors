@@ -133,3 +133,26 @@ body {
     text-align: center;
     font-size: 80px;
 }
+
+.bold-buttonDesc {
+    font-weight: bold;
+    font-size: 31px;
+}
+
+.restart {
+    background-color: rgb(226, 245, 255);
+    border-width: 0.5px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 20px;
+    width: 135px;
+    height: 60px;
+    flex-shrink: 0;
+    font-size: 22px;
+    margin-top: 30px;
+}
+
+.restart:hover {
+    background-color: rgb(210, 228, 238);
+    cursor: pointer;
+}

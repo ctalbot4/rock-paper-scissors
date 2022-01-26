@@ -80,15 +80,15 @@ let losses = 0;
 
 const playerScore = document.querySelector('.player-choice .choice-text .score');
 const computerScore = document.querySelector('.computer-choice .choice-text .score');
-const buttonDesc = document.querySelector(".button-desc");
+const buttonDesc = document.querySelector('.button-desc');
+const restartButton = document.querySelector('.restart');
 
 function gameOver() {
-    buttonContainer.style.display = "none";
+    buttonContainer.classList.toggle('hidden');
     if (wins > losses) buttonDesc.textContent = "You win! You beat the computer!";
     else if (losses > wins) buttonDesc.textContent = "You lost! The computer beat you."
     else buttonDesc.textContent = "Something very wrong happened.";
-    buttonDesc.style.fontWeight = 'bold';
-    buttonDesc.style.fontSize = '31px';
+    buttonDesc.classList.toggle('bold-buttonDesc');
 }
 
 function handleButtonClick (e) {
@@ -114,7 +114,22 @@ function handleButtonClick (e) {
 
     if (wins === 5 || losses == 5) {
         gameOver();
+        restartButton.classList.toggle('hidden');
     }
+}
+
+restartButton.addEventListener('click', restart);
+
+function restart (e) {
+    wins = 0;
+    losses = 0;
+    showEmojiChoices();
+    buttonContainer.classList.toggle('hidden');
+    document.querySelectorAll('.score').forEach(element => element.textContent = "0");
+    outputTextContainer.textContent = "First to five!";
+    buttonDesc.classList.toggle('bold-buttonDesc');
+    buttonDesc.textContent = 'Choose rock, paper, or scissors:';
+    restartButton.classList.toggle('hidden');
 }
 
 function showEmojiChoices (playerSelection, computerSelection) {
@@ -133,6 +148,9 @@ function showEmojiChoices (playerSelection, computerSelection) {
                 break;
             case 'scissors':
                 node.firstElementChild.textContent = "✌️";
+                break;
+            case undefined:
+                node.firstElementChild.innerHTML = "<b>?</b>";
                 break;
         }
     })
