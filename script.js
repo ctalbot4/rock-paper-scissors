@@ -52,8 +52,19 @@ function interpretSelections(playerSelection, computerSelection) {
 const h1 = document.querySelector('.header');
 const launchButton = document.querySelector('.launch');
 const gameContainer = document.querySelector('.game-container');
+const buttons = document.querySelectorAll('.game-buttons button');
+const output = document.querySelector('.output');
+const buttonContainer = document.querySelector('.game-buttons');
+const playerContainer = document.querySelector('.player-choice');
+const computerContainer = document.querySelector('.computer-choice');
+const outputContainer = document.querySelector('.output');
+const outputTextContainer = document.querySelector('.output-text');
+const playerScore = document.querySelector('.player-choice .choice-text .score');
+const computerScore = document.querySelector('.computer-choice .choice-text .score');
+const buttonDesc = document.querySelector('.button-desc');
+const restartButton = document.querySelector('.restart');
 
-// window.onload = () => gameContainer.classList.add('transition');
+launchButton.addEventListener("click", launch, { once: true });
 
 function launch () {
     gameContainer.classList.toggle('soft-hidden');
@@ -63,33 +74,11 @@ function launch () {
     launchButton.remove();
 }
 
-launchButton.addEventListener("click", launch, { once: true });
-
-const buttons = document.querySelectorAll('.game-buttons button');
-
-const output = document.querySelector('.output');
-const buttonContainer = document.querySelector('.game-buttons');
-const playerContainer = document.querySelector('.player-choice');
-const computerContainer = document.querySelector('.computer-choice');
-const outputContainer = document.querySelector('.output');
-const outputTextContainer = document.querySelector('.output-text');
-
 let roundCount = 0;
 let wins = 0;
 let losses = 0;
 
-const playerScore = document.querySelector('.player-choice .choice-text .score');
-const computerScore = document.querySelector('.computer-choice .choice-text .score');
-const buttonDesc = document.querySelector('.button-desc');
-const restartButton = document.querySelector('.restart');
-
-function gameOver() {
-    buttonContainer.classList.toggle('hidden');
-    if (wins > losses) buttonDesc.textContent = "You win! You beat the computer!";
-    else if (losses > wins) buttonDesc.textContent = "You lost! The computer beat you."
-    else buttonDesc.textContent = "Something very wrong happened.";
-    buttonDesc.classList.toggle('bold-buttonDesc');
-}
+buttons.forEach(button => button.addEventListener('click', handleButtonClick));
 
 function handleButtonClick (e) {
     id = this.id;
@@ -118,20 +107,6 @@ function handleButtonClick (e) {
     }
 }
 
-restartButton.addEventListener('click', restart);
-
-function restart (e) {
-    wins = 0;
-    losses = 0;
-    showEmojiChoices();
-    buttonContainer.classList.toggle('hidden');
-    document.querySelectorAll('.score').forEach(element => element.textContent = "0");
-    outputTextContainer.textContent = "First to five!";
-    buttonDesc.classList.toggle('bold-buttonDesc');
-    buttonDesc.textContent = 'Choose rock, paper, or scissors:';
-    restartButton.classList.toggle('hidden');
-}
-
 function showEmojiChoices (playerSelection, computerSelection) {
     let i = 0;
     outputContainer.childNodes.forEach(node => {
@@ -156,6 +131,24 @@ function showEmojiChoices (playerSelection, computerSelection) {
     })
 }
 
-buttons.forEach(button => button.addEventListener('click', handleButtonClick));
+function gameOver() {
+    buttonContainer.classList.toggle('hidden');
+    if (wins > losses) buttonDesc.textContent = "You win! You beat the computer!";
+    else if (losses > wins) buttonDesc.textContent = "You lost! The computer beat you."
+    else buttonDesc.textContent = "Something very wrong happened.";
+    buttonDesc.classList.toggle('bold-buttonDesc');
+}
 
-// launch(); // temporary so launch button doesn't have to be clicked after every reload
+restartButton.addEventListener('click', restart);
+
+function restart (e) {
+    wins = 0;
+    losses = 0;
+    showEmojiChoices();
+    buttonContainer.classList.toggle('hidden');
+    document.querySelectorAll('.score').forEach(element => element.textContent = "0");
+    outputTextContainer.textContent = "First to five!";
+    buttonDesc.classList.toggle('bold-buttonDesc');
+    buttonDesc.textContent = 'Choose rock, paper, or scissors:';
+    restartButton.classList.toggle('hidden');
+}
