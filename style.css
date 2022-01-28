@@ -66,6 +66,7 @@ body {
     margin-top: 20px;
     width: 40%;
     flex-shrink: 1;
+    min-width: 320px;
 }
 
 .output {
